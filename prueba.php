@@ -30,11 +30,11 @@
             <div class="col-6">
                 <div class="form-group">
                     <label for="" class="form-label"> Frecuencia MHz</label>
-                    <input type="number" name="frecuencia" placeholder="" class="form-control datoInput">
+                    <input type="number" min="0" max="100" name="frecuencia" placeholder="" class="form-control datoInput">
                 </div>
                 <div class="form-group">
                     <label for="" class="form-label">Ancho de Banda MHz</label>
-                    <input type="number" name="BW" id="BW" class="form-control datoInput">
+                    <input type="number" min="0" max="10" name="BW" id="BW" class="form-control datoInput">
                 </div>
                 <div class="form-group">
                     <label for="" class="form-label">Potencia Pico dBm</label>
@@ -42,7 +42,7 @@
                 </div>
                 <div class="form-group">
                     <label for="" class="form-label">Temperatura</label>
-                    <input type="number" name="T" id="T" class="form-control dato1">
+                    <input type="number" min="0" max="373" name="T" id="T" class="form-control dato1">
                 </div>
                 <button type="submit" class="form-control btn btn-primary" name="subir" id="subir" onclick="viewarray()">Hecho</button>
             </div>
