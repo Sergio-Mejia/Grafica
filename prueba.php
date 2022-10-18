@@ -13,6 +13,9 @@
 
 <body>
 
+    <?php 
+        $contador=1;
+    ?>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3" crossorigin="anonymous"></script>
     <nav class="navbar navbar-dark bg-primary">
         <div class="container-fluid">
@@ -33,7 +36,10 @@
                         <div class="form-group">
                             <input type="number" name="PP" id="PP" placeholder="Potencia Pico" class="form-control datoInput">
                         </div>
-                        <button type="submit" class="btn btn-primary" onclick="viewarray()">Hecho</button>
+                        <div class="form-group">
+                            <input type="number" name="T" id="T" placeholder="Temperatura" class="form-control dato1">
+                        </div>                        
+                        <button type="submit" class="btn btn-primary" name="subir" id="subir" onclick="viewarray()">Hecho</button>
                     </div>
                 </div>
             </div>
@@ -52,4 +58,5 @@
     </figure>
     <script type='text/javascript' src='index.js'></script>
 
+    
 </body>
