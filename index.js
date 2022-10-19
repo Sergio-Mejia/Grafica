@@ -390,7 +390,89 @@ function viewarray() {
         array1.splice(0, (array1.length));
         temp.splice(0, (temp.length));
     }
-
-
 }
 
+
+function convertirFrecuencia(){
+
+    let frecuencia = document.getElementById("frecuencia1").value;
+
+    const combo = document.getElementById("unidadf");
+    let selected = combo.options[combo.selectedIndex].text;
+    let unidad = 0;
+
+    console.log("Seleccionado " + selected);
+
+    switch(selected){
+        case 'kHz':
+            unidad = Math.pow(10,-3) * frecuencia;
+            console.log('Unidad MHz' + unidad); 
+            break;
+        case 'Hz':
+            unidad = Math.pow(10,-6) * frecuencia;
+            console.log('Unidad MHz' + unidad); 
+            break;
+        case 'GHz':
+            unidad = Math.pow(10,3) * frecuencia;
+            console.log('Unidad MHz' + unidad); 
+            break;
+        case 'Mhz':
+            unidad = frecuencia;
+            break;
+    }
+}
+
+function convertirBw(){
+
+    let bw = document.getElementById("BW").value;
+
+    const combo = document.getElementById("unidadbw");
+    let selected = combo.options[combo.selectedIndex].text;
+    let unidad = 0;
+
+    console.log("Seleccionado " + selected);
+
+    switch(selected){
+        case 'kHz':
+            unidad = Math.pow(10,-3) * bw;
+            console.log('Unidad MHz' + unidad); 
+            break;
+        case 'Hz':
+            unidad = Math.pow(10,-6) * bw;
+            console.log('Unidad MHz' + unidad); 
+            break;
+        case 'GHz':
+            unidad = Math.pow(10,3) * bw;
+            console.log('Unidad MHz' + unidad); 
+            break;
+        case 'Mhz':
+            unidad = bw;
+            break;
+    }
+}
+
+function convertirPP(){
+
+    let pp = document.getElementById("PP").value;
+
+    const combo = document.getElementById("unidadpp");
+    let selected = combo.options[combo.selectedIndex].text;
+    let unidad = 0;
+
+    console.log("Seleccionado " + selected);
+
+    switch(selected){
+        case 'dBm':
+            unidad = parseInt(pp);
+            console.log('Unidad dBm' + unidad); 
+            break;
+        case 'dBw':
+            unidad = parseInt(pp) + 30;
+            console.log('Unidad dBm' + unidad); 
+            break;
+        case 'dBk':
+            unidad = parseInt(pp) + 60;
+            console.log('Unidad dBm' + unidad); 
+            break;
+    }
+}

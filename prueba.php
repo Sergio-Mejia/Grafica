@@ -29,22 +29,39 @@
             <div class="col"></div>
             <div class="col-6">
                 <div class="form-group">
-                    <label for="" class="form-label"> Frecuencia MHz</label>
-                    <input type="number" min="0" max="100" name="frecuencia" placeholder="" class="form-control datoInput">
+                    <label for=""  class="form-label"> Frecuencia MHz</label>
+                    <input type="number" min="0" max="100" name="frecuencia" id="frecuencia1" placeholder="" class="form-control datoInput">
+                    <select name="unidadf" id="unidadf" onsubmit="convertirFrecuencia()">
+                        <option value="mhz">MHz</option>
+                        <option value="khz">kHz</option>
+                        <option value="hz">Hz</option>
+                        <option value="ghz">GHz</option>
+                    </select>
                 </div>
                 <div class="form-group">
                     <label for="" class="form-label">Ancho de Banda MHz</label>
                     <input type="number" min="0" max="10" name="BW" id="BW" class="form-control datoInput">
+                    <select name="unidadbw" id="unidadbw" onsubmit="convertirBw()">
+                        <option value="mhz1">MHz</option>
+                        <option value="khz1">kHz</option>
+                        <option value="hz1">Hz</option>
+                        <option value="ghz1">GHz</option>
+                    </select>
                 </div>
                 <div class="form-group">
                     <label for="" class="form-label">Potencia Pico dBm</label>
                     <input type="number" name="PP" id="PP" class="form-control datoInput">
+                    <select name="unidadpp" id="unidadpp" onsubmit="convertirPP()">
+                        <option value="dBm">dBm</option>
+                        <option value="dBW">dBW</option>
+                        <option value="dBk">dBk</option>
+                    </select>
                 </div>
                 <div class="form-group">
                     <label for="" class="form-label">Temperatura</label>
                     <input type="number" min="0" max="373" name="T" id="T" class="form-control dato1">
                 </div>
-                <button type="submit" class="form-control btn btn-primary" name="subir" id="subir" onclick="viewarray()">Hecho</button>
+                <button type="submit" class="form-control btn btn-primary" name="subir" id="subir" onclick=" convertirFrecuencia(), convertirBw(), convertirPP(), viewarray()">Hecho</button>
             </div>
             <div class="col"></div>
         </div>
