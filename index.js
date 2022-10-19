@@ -111,10 +111,10 @@ function viewarray() {
                 array1.push(f1); array1.push(bw1); array1.push(pp1);
                 piso_ruido = 10 * Math.log10((((t1) * (Math.pow(10, 6) * array1[1]) * (Math.pow(10, -23) * 1.38)) / ((Math.pow(10, -3) * 1))));
                 console.log("Piso de ruido " + piso_ruido);
-            
+                console.log('Contador ' + contador);
                 if (contador == 1) {
                     menor = array1[0] - array1[1];
-                    maxi = array1[0] + array1[1]
+                    maxi = array1[0] + array1[1];
                     Highcharts.chart('container1', {
                         chart: {
                             type: 'spline'
@@ -464,19 +464,24 @@ function viewarray() {
                     alert("ERROR, no se pueden agregar más señales");
                 }
             } else {
-                alert("ERROR. La temperatura debe estar entre 0 y  373 grados Kelvin");
-                array1.splice(0, (array1.length));
-                temp.splice(0, (temp.length));
+                alert("ERROR. El ancho de banda debe estar entre 0 y 10 MHz");
+                bw1 = 0;
+                f1 = 0;
+                pp1 = 0;
             }
         } else {
-            alert("ERROR. El ancho de banda debe estar entre 0 y 10 MHz");
-            array1.splice(0, (array1.length));
-            temp.splice(0, (temp.length));
+            alert("ERROR. La frecuencia debe estar entre 0 y 100 MHz");
+            bw1 = 0;
+            f1 = 0;
+            pp1 = 0;
         }
     } else {
-        alert("ERROR. La frecuencia debe estar entre 0 y 100 MHz");
-        array1.splice(0, (array1.length));
-        temp.splice(0, (temp.length));
+
+        alert("ERROR. La temperatura debe estar entre 0 y  373 grados Kelvin");
+        bw1 = 0;
+        f1 = 0;
+        pp1 = 0;
+        t1 = 0;
     }
 }
 
