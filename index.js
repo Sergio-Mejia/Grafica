@@ -3,6 +3,7 @@ let piso_ruido = 0;
 let contador = 0;
 let menor = 0, maxi = 0;
 const temp = new Array();
+let aux = 0;
 
 function convertirFrecuencia() {
 
@@ -109,10 +110,10 @@ function viewarray() {
                 contador = contador + 1;
                 document.getElementById('T').disabled = true;
                 array1.push(f1); array1.push(bw1); array1.push(pp1);
-                piso_ruido = 10 * Math.log10((((t1) * (Math.pow(10, 6) * array1[1]) * (Math.pow(10, -23) * 1.38)) / ((Math.pow(10, -3) * 1))));
                 console.log("Piso de ruido " + piso_ruido);
                 console.log('Contador ' + contador);
                 if (contador == 1) {
+                    piso_ruido = 10 * Math.log10((((t1) * (Math.pow(10, 6) * array1[1]) * (Math.pow(10, -23) * 1.38)) / ((Math.pow(10, -3) * 1))));
                     menor = array1[0] - array1[1];
                     maxi = array1[0] + array1[1];
                     Highcharts.chart('container1', {
@@ -183,6 +184,13 @@ function viewarray() {
 
                     );
                 } else if (contador == 2) {
+                    if (array1[1] < array1[4]) {
+                        aux = array1[1]/10;
+                    } else{
+                        aux = array1[4]/10;
+                    }
+
+                    piso_ruido = 10 * Math.log10((((t1) * (Math.pow(10, 6) * parseFloat(aux)) * (Math.pow(10, -23) * 1.38)) / ((Math.pow(10, -3) * 1))));
                     if ((array1[3] - array1[4]) < menor) {
                         menor = array1[3] - array1[4];
                     }
@@ -266,6 +274,12 @@ function viewarray() {
                     }
                     );
                 } else if (contador == 3) {
+                    
+                    if (array1[7]<aux) {
+                        aux = array1[7]/10;
+                    }
+                    piso_ruido = 10 * Math.log10((((t1) * (Math.pow(10, 6) * parseFloat(aux)) * (Math.pow(10, -23) * 1.38)) / ((Math.pow(10, -3) * 1))));
+                    
                     if ((array1[6] - array1[7]) < menor) {
                         menor = array1[6] - array1[7];
                     }
@@ -359,6 +373,11 @@ function viewarray() {
                     }
                     );
                 } else if (contador == 4) {
+                    if (array1[10]<aux) {
+                        aux = array1[10]/10;
+                    }
+                    piso_ruido = 10 * Math.log10((((t1) * (Math.pow(10, 6) * parseFloat(aux)) * (Math.pow(10, -23) * 1.38)) / ((Math.pow(10, -3) * 1))));
+
                     if ((array1[9] - array1[10]) < menor) {
                         menor = array1[9] - array1[10];
                     }
