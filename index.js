@@ -4,23 +4,27 @@ let contador = 0;
 let menor = 0, maxi = 0;
 const temp = new Array();
 function viewarray() {
-    let inputvalues = document.getElementsByClassName('datoInput'),
-        namesValues = [].map.call(inputvalues, function (dataInput) {
-            array1.push(parseInt(dataInput.value));
-        });
-    let inputvalue1 = document.getElementsByClassName('dato1'),
-        namesValue1 = [].map.call(inputvalue1, function (dataInput) {
-            temp.push(parseInt(dataInput.value));
-        });
 
+    var T1 = document.getElementById('T');
+    var f1 = parseInt(document.getElementById('fr').value);
+    var bw1 = parseInt(document.getElementById('BW').value);
+    var te1 = parseInt(document.getElementById('T').value);
 
-    contador = contador + 1;
+    
     // Data retrieved from https://www.vikjavev.no/ver/snjomengd
-
-    if (array1[0] <= 100 && array1[0] > 0) {
-        if (array1[1] <= 10 && array1[1] > 0) {
-            if (temp[0] > 0 && temp[0] < 373) {
-
+    if (te1 > 0 && te1 < 373) {
+        if (f1 <= 100 && f1 > 0) {
+            if (bw1 <= 10 && bw1 > 0) {
+                contador = contador + 1;
+                let inputvalues = document.getElementsByClassName('datoInput'),
+                    namesValues = [].map.call(inputvalues, function (dataInput) {
+                        array1.push(parseInt(dataInput.value));
+                    });
+                let inputvalue1 = document.getElementsByClassName('dato1'),
+                    namesValue1 = [].map.call(inputvalue1, function (dataInput) {
+                        temp.push(parseInt(dataInput.value));
+                    });
+                T1.disabled = true;
                 piso_ruido = 10 * Math.log10((((temp[0]) * (Math.pow(10, 6) * array1[1]) * (Math.pow(10, -23) * 1.38)) / ((Math.pow(10, -3) * 1))));
                 console.log("Piso de ruido " + piso_ruido);
 
@@ -377,18 +381,13 @@ function viewarray() {
                 }
             } else {
                 alert("ERROR. La temperatura debe estar entre 0 y  373 grados Kelvin");
-                array1.splice(0, (array1.length));
-                temp.splice(0, (temp.length));
+
             }
         } else {
             alert("ERROR. El ancho de banda debe estar entre 0 y 10 MHz");
-            array1.splice(0, (array1.length));
-            temp.splice(0, (temp.length));
         }
     } else {
         alert("ERROR. La frecuencia debe estar entre 0 y 100 MHz");
-        array1.splice(0, (array1.length));
-        temp.splice(0, (temp.length));
     }
 
 
