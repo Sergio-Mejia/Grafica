@@ -3,27 +3,115 @@ let piso_ruido = 0;
 let contador = 0;
 let menor = 0, maxi = 0;
 const temp = new Array();
+
+function convertirFrecuencia() {
+
+    var frecuencia = parseInt(document.getElementById("frecuencia1").value);
+    console.log(frecuencia);
+    const combo = document.getElementById("unidadf");
+    let selected = combo.options[combo.selectedIndex].text;
+    var unidad = 0;
+
+    console.log("Seleccionado " + selected);
+
+    switch (selected) {
+        case 'MHz':
+            unidad = frecuencia;
+            console.log(unidad);
+            break;
+        case 'kHz':
+            unidad = Math.pow(10, -3) * frecuencia;
+            console.log('Unidad MHz' + unidad);
+            break;
+        case 'Hz':
+            unidad = Math.pow(10, -6) * frecuencia;
+            console.log('Unidad MHz' + unidad);
+            break;
+        case 'GHz':
+            unidad = Math.pow(10, 3) * frecuencia;
+            console.log('Unidad MHz' + unidad);
+            break;
+    }
+    console.log(unidad);
+    return unidad;
+}
+
+function convertirBw() {
+
+    let bw = document.getElementById("BW").value;
+
+    const combo = document.getElementById("unidadbw");
+    let selected = combo.options[combo.selectedIndex].text;
+    let unidad = 0;
+
+    console.log("Seleccionado " + selected);
+
+    switch (selected) {
+        case 'kHz':
+            unidad = Math.pow(10, -3) * bw;
+            console.log('Unidad MHz' + unidad);
+            break;
+        case 'Hz':
+            unidad = Math.pow(10, -6) * bw;
+            console.log('Unidad MHz' + unidad);
+            break;
+        case 'GHz':
+            unidad = Math.pow(10, 3) * bw;
+            console.log('Unidad MHz' + unidad);
+            break;
+        case 'MHz':
+            unidad = bw;
+            break;
+    }
+    return unidad;
+}
+
+function convertirPP() {
+
+    let pp = document.getElementById("PP").value;
+
+    const combo = document.getElementById("unidadpp");
+    let selected = combo.options[combo.selectedIndex].text;
+    let unidad = 0;
+
+    console.log("Seleccionado " + selected);
+
+    switch (selected) {
+        case 'dBm':
+            unidad = parseInt(pp);
+            console.log('Unidad dBm' + unidad);
+            break;
+        case 'dBW':
+            unidad = parseInt(pp) + 30;
+            console.log('Unidad dBm' + unidad);
+            break;
+        case 'dBK':
+            unidad = parseInt(pp) + 60;
+            console.log('Unidad dBm' + unidad);
+            break;
+    }
+    return unidad;
+}
+
 function viewarray() {
-    let inputvalues = document.getElementsByClassName('datoInput'),
-        namesValues = [].map.call(inputvalues, function (dataInput) {
-            array1.push(parseInt(dataInput.value));
-        });
-    let inputvalue1 = document.getElementsByClassName('dato1'),
-        namesValue1 = [].map.call(inputvalue1, function (dataInput) {
-            temp.push(parseInt(dataInput.value));
-        });
+    var f1 = parseFloat(convertirFrecuencia());
+    console.log(f1);
+    var bw1 = parseFloat(convertirBw());
+    var pp1 = parseFloat(convertirPP());
+    var t1 = parseInt(document.getElementById('T').value);
 
 
-    contador = contador + 1;
     // Data retrieved from https://www.vikjavev.no/ver/snjomengd
 
-    if (array1[0] <= 100 && array1[0] > 0) {
-        if (array1[1] <= 10 && array1[1] > 0) {
-            if (temp[0] > 0 && temp[0] < 373) {
-
-                piso_ruido = 10 * Math.log10((((temp[0]) * (Math.pow(10, 6) * array1[1]) * (Math.pow(10, -23) * 1.38)) / ((Math.pow(10, -3) * 1))));
+    if (t1 > 0 && t1 < 373) {
+        if (f1 <= 100 && f1 > 0) {
+            if (bw1 <= 10 && bw1 > 0) {
+                contador = contador + 1;
+                document.getElementById('T').disabled = true;
+                array1.push(f1); array1.push(bw1); array1.push(pp1);
+                piso_ruido = 10 * Math.log10((((t1) * (Math.pow(10, 6) * array1[1]) * (Math.pow(10, -23) * 1.38)) / ((Math.pow(10, -3) * 1))));
                 console.log("Piso de ruido " + piso_ruido);
-
+            
                 if (contador == 1) {
                     menor = array1[0] - array1[1];
                     maxi = array1[0] + array1[1]
@@ -392,87 +480,3 @@ function viewarray() {
     }
 }
 
-
-function convertirFrecuencia(){
-
-    let frecuencia = document.getElementById("frecuencia1").value;
-
-    const combo = document.getElementById("unidadf");
-    let selected = combo.options[combo.selectedIndex].text;
-    let unidad = 0;
-
-    console.log("Seleccionado " + selected);
-
-    switch(selected){
-        case 'kHz':
-            unidad = Math.pow(10,-3) * frecuencia;
-            console.log('Unidad MHz' + unidad); 
-            break;
-        case 'Hz':
-            unidad = Math.pow(10,-6) * frecuencia;
-            console.log('Unidad MHz' + unidad); 
-            break;
-        case 'GHz':
-            unidad = Math.pow(10,3) * frecuencia;
-            console.log('Unidad MHz' + unidad); 
-            break;
-        case 'Mhz':
-            unidad = frecuencia;
-            break;
-    }
-}
-
-function convertirBw(){
-
-    let bw = document.getElementById("BW").value;
-
-    const combo = document.getElementById("unidadbw");
-    let selected = combo.options[combo.selectedIndex].text;
-    let unidad = 0;
-
-    console.log("Seleccionado " + selected);
-
-    switch(selected){
-        case 'kHz':
-            unidad = Math.pow(10,-3) * bw;
-            console.log('Unidad MHz' + unidad); 
-            break;
-        case 'Hz':
-            unidad = Math.pow(10,-6) * bw;
-            console.log('Unidad MHz' + unidad); 
-            break;
-        case 'GHz':
-            unidad = Math.pow(10,3) * bw;
-            console.log('Unidad MHz' + unidad); 
-            break;
-        case 'Mhz':
-            unidad = bw;
-            break;
-    }
-}
-
-function convertirPP(){
-
-    let pp = document.getElementById("PP").value;
-
-    const combo = document.getElementById("unidadpp");
-    let selected = combo.options[combo.selectedIndex].text;
-    let unidad = 0;
-
-    console.log("Seleccionado " + selected);
-
-    switch(selected){
-        case 'dBm':
-            unidad = parseInt(pp);
-            console.log('Unidad dBm' + unidad); 
-            break;
-        case 'dBw':
-            unidad = parseInt(pp) + 30;
-            console.log('Unidad dBm' + unidad); 
-            break;
-        case 'dBk':
-            unidad = parseInt(pp) + 60;
-            console.log('Unidad dBm' + unidad); 
-            break;
-    }
-}
