@@ -4,6 +4,7 @@ let contador = 0;
 let menor = 0, maxi = 0;
 const temp = new Array();
 
+
 function convertirFrecuencia() {
 
     var frecuencia = parseInt(document.getElementById("frecuencia1").value);
